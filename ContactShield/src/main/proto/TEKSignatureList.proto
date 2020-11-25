@@ -1,0 +1,38 @@
+/*
+ * Code sample from https://developers.google.com/android/exposure-notifications/exposure-key-file-format
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * 2020.09.15 - Make generated java code under the same package, and add import statement to pass compilation.
+ *              Copyright 2020. Huawei Technologies Co., Ltd. All rights reserved.
+ */
+
+syntax = "proto2";
+
+package com.huawei.hms.samples;
+import "TemporaryExposureKeyExport.proto";
+
+message TEKSignatureList {
+  repeated TEKSignature signatures = 1;
+}
+
+message TEKSignature {
+  // Info about the signing key, version, algorithm, and so on.
+  optional SignatureInfo signature_info = 1;
+  // For example, file 2 in batch size of 10. Ordinal, 1-based numbering.
+  optional int32 batch_num = 2;
+  optional int32 batch_size = 3;
+  // Signature in X9.62 format (ASN.1 SEQUENCE of two INTEGER fields)
+  optional bytes signature = 4;
+}

@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {url 'http://developer.huawei.com/repo/'}
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.12'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {url 'http://developer.huawei.com/repo/'}
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

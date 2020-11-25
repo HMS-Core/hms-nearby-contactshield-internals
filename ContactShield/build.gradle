@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+// protobuf
+apply plugin: 'com.google.protobuf'
+
+protobuf {
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.11.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable = false
+            jniDebuggable = false
+            renderscriptDebuggable = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            java.srcDirs = ['src/main/java']
+            proto {
+                srcDir 'src/main/proto'
+            }
+        }
+    }
+
+    libraryVariants.all { variant ->
+        def buildType = variant.buildType.name
+        variant.outputs.all { output ->
+            output.outputFileName = "contactshield" + "-" + buildType + ".aar"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+            all {
+                systemProperty 'robolectric.dependency.repo.url', 'http://developer.huawei.com/repo/'
+                systemProperty 'robolectric.dependency.repo.id', 'local'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.3.1'
+    implementation 'com.google.protobuf:protobuf-javalite:3.8.0'
+}
