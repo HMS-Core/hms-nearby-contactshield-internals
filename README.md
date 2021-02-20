@@ -1,4 +1,5 @@
 # Contact Shield
+English | [中文](https://github.com/HMS-Core/hms-nearby-contactshield-internals/blob/master/README_ZH.md)
 
 ## Introduction
 
