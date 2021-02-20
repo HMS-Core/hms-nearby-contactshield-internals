@@ -1,5 +1,5 @@
 # 华为接触卫士
-
+[English](https://github.com/HMS-Core/hms-nearby-contactshield-internals) | 中文
 ## 简介
 
 该项目是华为移动服务中接触卫士的代码片段，主要包括：密钥管理、蓝牙（BLE）任务管理、密钥文件分析、数据存储。本项目还提供了示例代码，为您展示如何在已集成Google Exposure Notification的应用中快速集成Contact Shield SDK。
